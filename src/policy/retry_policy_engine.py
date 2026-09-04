@@ -67,7 +67,7 @@ NO_RETRY_CATEGORIES = frozenset({"risk_block", "card_expired"})
 # says something else. Replace this placeholder set with the real
 # risk-coded values from Phase 1's generator config before relying on it.
 RISK_CODED_RAW_VALUES = frozenset({
-    "U39", "U40", "U41",  # PLACEHOLDER — fill in from Phase 1 config
+    "07", "41", "59", "05", "U39", "NB_RISK", "WL_RISK",  # PLACEHOLDER — fill in from Phase 1 config
 })
 
 # ---------------------------------------------------------------------------

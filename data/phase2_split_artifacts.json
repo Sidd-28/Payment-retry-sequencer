@@ -1,0 +1,17 @@
+{
+  "amount_bucket_inner_edges": [
+    480.0,
+    835.0,
+    1355.0,
+    2455.0
+  ],
+  "amount_bucket_labels": [
+    "q1",
+    "q2",
+    "q3",
+    "q4",
+    "q5"
+  ],
+  "train_global_fail_rate": 0.0917133056508395,
+  "fit_from_train_cut_timestamp": "2025-03-04 09:57:27.600000"
+}

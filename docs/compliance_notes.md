@@ -130,3 +130,7 @@ This module intentionally does not change anything in Phase 3
 guardrail layers keep running unmodified whether or not Phase 7's
 wrapper is in the call path — which is exactly what
 `test_direct_call_*_bypassing_wrapper_still_blocks` verifies.
+
+## Known limitation: residual risk_block/card_expired leakage
+
+1.36% residual leakage on risk_block/card_expired persists even after adding real raw-code cross-checks, because ~8% of true risk_block cases are assigned a raw code from an unrelated category by the data generator's noise model — no signal survives for the engine to catch these. This is a structural limit of probabilistic classification, not a fixable guardrail bug.

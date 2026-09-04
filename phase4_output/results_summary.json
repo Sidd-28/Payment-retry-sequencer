@@ -1,0 +1,225 @@
+{
+  "results": {
+    "n": 6003,
+    "total_at_risk": 10807047.0,
+    "n_hard_truth": 957,
+    "policy": {
+      "retries_attempted": 4936,
+      "recovered_n": 3000,
+      "recovery_rate_pct": 60.777957860615885,
+      "gross_recovered": 5353850.0,
+      "gateway_cost": 9872.0,
+      "annoyance_cost": 9680.0,
+      "net_recovered": 5334298.0,
+      "gross_pct_at_risk": 49.54036010021979,
+      "net_pct_at_risk": 49.35944111282203,
+      "latency": {
+        "n": 3000,
+        "median_s": 187.94603265453614,
+        "p90_s": 374.93986095295355,
+        "p99_s": 931.0584177625431,
+        "max_s": 47187.99833646892
+      },
+      "latency_buckets": [
+        {
+          "label": "immediate (<5min)",
+          "n": 1806,
+          "pct": 60.2
+        },
+        {
+          "label": "<1hr",
+          "n": 1185,
+          "pct": 39.5
+        },
+        {
+          "label": "<1day",
+          "n": 9,
+          "pct": 0.3
+        },
+        {
+          "label": ">1day",
+          "n": 0,
+          "pct": 0.0
+        }
+      ]
+    },
+    "baseline_a": {
+      "retries_attempted": 0,
+      "recovered_n": 0,
+      "recovery_rate_pct": 0.0,
+      "gross_recovered": 0.0,
+      "gateway_cost": 0.0,
+      "annoyance_cost": 0.0,
+      "net_recovered": 0.0,
+      "gross_pct_at_risk": 0.0,
+      "net_pct_at_risk": 0.0,
+      "latency": {
+        "n": 0,
+        "median_s": null,
+        "p90_s": null,
+        "p99_s": null,
+        "max_s": null
+      }
+    },
+    "baseline_b": {
+      "retries_attempted": 6003,
+      "recovered_n": 1610,
+      "recovery_rate_pct": 26.81992337164751,
+      "gross_recovered": 2827060.0,
+      "gateway_cost": 12006.0,
+      "annoyance_cost": 21965.0,
+      "net_recovered": 2793089.0,
+      "gross_pct_at_risk": 26.159412464848167,
+      "net_pct_at_risk": 25.845071276177478,
+      "latency": {
+        "n": 1610,
+        "median_s": 3628.982711985741,
+        "p90_s": 3663.1190413916793,
+        "p99_s": 3713.6997333903464,
+        "max_s": 3813.537626781038
+      },
+      "latency_buckets": [
+        {
+          "label": "immediate (<5min)",
+          "n": 0,
+          "pct": 0.0
+        },
+        {
+          "label": "<1hr",
+          "n": 0,
+          "pct": 0.0
+        },
+        {
+          "label": "<1day",
+          "n": 1610,
+          "pct": 100.0
+        },
+        {
+          "label": ">1day",
+          "n": 0,
+          "pct": 0.0
+        }
+      ]
+    },
+    "false_positive": {
+      "n_gt_unrecoverable": 2697,
+      "policy": {
+        "wasted_retries_n": 1708,
+        "wasted_retries_amount": 2855018.0,
+        "fp_rate_pct": 63.32962550982573,
+        "share_of_retries_pct": 34.60291734197731,
+        "wasted_gateway_cost": 3416.0,
+        "wasted_annoyance_cost": 3865.0,
+        "wasted_total_cost": 7281.0,
+        "net_recovered_if_no_fp_retries": 5341579.0
+      },
+      "baseline_b": {
+        "wasted_retries_n": 2697,
+        "wasted_retries_amount": 4715573.0,
+        "fp_rate_pct": 100.0,
+        "share_of_retries_pct": 44.927536231884055,
+        "wasted_gateway_cost": 5394.0,
+        "wasted_annoyance_cost": 11640.0,
+        "wasted_total_cost": 17034.0
+      }
+    },
+    "guardrail_compliance": {
+      "engine_hard_rule_violations": 0,
+      "gt_violations_n": 13,
+      "gt_violations_pct": 1.3584117032392895,
+      "by_category": {
+        "risk_block": {
+          "n": 535,
+          "violations": 11
+        },
+        "card_expired": {
+          "n": 422,
+          "violations": 2
+        }
+      },
+      "gt_label_mismatch_n": 0,
+      "gt_fallback_rows_n": 0,
+      "gt_fallback_used": false,
+      "compliant": true
+    },
+    "safety": {
+      "hard_rule_violations": 0,
+      "residual_leakage_n": 13,
+      "residual_leakage_rate_pct": 1.3584117032392895,
+      "naive_baseline_hard_fp_n": 957,
+      "naive_baseline_hard_fp_rate_pct": 100.0,
+      "over_block_n": 75,
+      "over_block_amount": 120387.0,
+      "over_block_expected_recovery_forgone": 75844.22699359166,
+      "other_category_policy_gap_n": 328,
+      "flagged_for_human_review_n": 640,
+      "risk_coded_values_still_placeholder": false
+    },
+    "cost_inputs": {
+      "gateway_fee": 2.0,
+      "annoyance_cost": 5.0
+    }
+  },
+  "sensitivity": [
+    {
+      "scenario": "baseline assumptions (1x fee / 1x annoyance)",
+      "gateway_fee": 2.0,
+      "annoyance_cost": 5.0,
+      "net_recovered_policy": 5334298.0,
+      "net_recovered_baseline_b": 2793089.0,
+      "policy_advantage": 2541209.0
+    },
+    {
+      "scenario": "gateway fee 2x",
+      "gateway_fee": 4.0,
+      "annoyance_cost": 5.0,
+      "net_recovered_policy": 5324426.0,
+      "net_recovered_baseline_b": 2781083.0,
+      "policy_advantage": 2543343.0
+    },
+    {
+      "scenario": "gateway fee 0.5x",
+      "gateway_fee": 1.0,
+      "annoyance_cost": 5.0,
+      "net_recovered_policy": 5339234.0,
+      "net_recovered_baseline_b": 2799092.0,
+      "policy_advantage": 2540142.0
+    },
+    {
+      "scenario": "annoyance cost 2x",
+      "gateway_fee": 2.0,
+      "annoyance_cost": 10.0,
+      "net_recovered_policy": 5324618.0,
+      "net_recovered_baseline_b": 2771124.0,
+      "policy_advantage": 2553494.0
+    },
+    {
+      "scenario": "annoyance cost 0.5x",
+      "gateway_fee": 2.0,
+      "annoyance_cost": 2.5,
+      "net_recovered_policy": 5339138.0,
+      "net_recovered_baseline_b": 2804071.5,
+      "policy_advantage": 2535066.5
+    },
+    {
+      "scenario": "both costs 2x (worst case)",
+      "gateway_fee": 4.0,
+      "annoyance_cost": 10.0,
+      "net_recovered_policy": 5314746.0,
+      "net_recovered_baseline_b": 2759118.0,
+      "policy_advantage": 2555628.0
+    },
+    {
+      "scenario": "both costs 0.5x (best case)",
+      "gateway_fee": 1.0,
+      "annoyance_cost": 2.5,
+      "net_recovered_policy": 5344074.0,
+      "net_recovered_baseline_b": 2810074.5,
+      "policy_advantage": 2533999.5
+    }
+  ],
+  "cost_inputs": {
+    "gateway_fee": 2.0,
+    "annoyance_cost": 5.0
+  }
+}
