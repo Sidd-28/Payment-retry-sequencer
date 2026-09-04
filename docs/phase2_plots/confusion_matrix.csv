@@ -1,0 +1,9 @@
+,insufficient_funds,bank_server_error,invalid_otp,risk_block,network_timeout,card_expired,limit_exceeded,other
+insufficient_funds,285,5,6,4,2,0,4,4
+bank_server_error,4,182,20,3,13,0,4,1
+invalid_otp,0,11,104,2,1,0,5,1
+risk_block,0,1,0,75,1,2,1,4
+network_timeout,1,12,1,1,84,0,0,0
+card_expired,0,0,1,1,1,59,0,0
+limit_exceeded,1,0,2,1,0,1,62,1
+other,0,2,0,0,0,1,0,48

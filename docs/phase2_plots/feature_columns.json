@@ -1,0 +1,50 @@
+{
+  "features": [
+    "payment_method",
+    "gateway",
+    "bank_response_code",
+    "merchant_archetype",
+    "merchant_id",
+    "amount",
+    "amount_bucket",
+    "attempt_number",
+    "is_retry",
+    "is_recurring",
+    "hour",
+    "hour_bucket",
+    "day_of_week",
+    "is_weekend",
+    "day_of_month",
+    "is_near_month_end",
+    "n_prev_attempts_this_txn",
+    "prev_decline_reason",
+    "prev_bank_response_code",
+    "merchant_hist_failure_rate",
+    "merchant_prior_attempt_count",
+    "customer_hist_failure_rate",
+    "customer_prior_attempt_count",
+    "gateway_recent_failure_rate"
+  ],
+  "categorical": [
+    "payment_method",
+    "gateway",
+    "bank_response_code",
+    "merchant_archetype",
+    "merchant_id",
+    "amount_bucket",
+    "hour_bucket",
+    "day_of_week",
+    "prev_decline_reason",
+    "prev_bank_response_code"
+  ],
+  "classes": [
+    "insufficient_funds",
+    "bank_server_error",
+    "invalid_otp",
+    "risk_block",
+    "network_timeout",
+    "card_expired",
+    "limit_exceeded",
+    "other"
+  ]
+}

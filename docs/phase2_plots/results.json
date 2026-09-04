@@ -1,0 +1,8 @@
+{
+  "test_macro_f1": 0.8715932300802451,
+  "test_weighted_f1": 0.877846839363624,
+  "best_iteration": 131,
+  "train_rows": 4064,
+  "val_rows": 914,
+  "test_rows": 1025
+}
