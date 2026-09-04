@@ -1,0 +1,119 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "PaymentAttempt",
+  "description": "Canonical event schema for a single payment attempt in the Payment Retry Sequencer project. Every phase (data generator, classifier, policy engine, API) reads and writes records matching this shape.",
+  "type": "object",
+  "required": [
+    "transaction_id",
+    "merchant_id",
+    "customer_id",
+    "amount",
+    "currency",
+    "payment_method",
+    "gateway",
+    "bank_response_code",
+    "decline_reason_category",
+    "timestamp",
+    "attempt_number",
+    "is_recurring"
+  ],
+  "properties": {
+    "transaction_id": {
+      "type": "string",
+      "description": "Unique identifier for this specific attempt."
+    },
+    "merchant_id": {
+      "type": "string",
+      "description": "Synthetic merchant identifier."
+    },
+    "customer_id": {
+      "type": "string",
+      "description": "Hashed/synthetic customer identifier. Never real PII."
+    },
+    "amount": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Transaction amount in the smallest currency unit is optional; keep it in whole rupees for simplicity."
+    },
+    "currency": {
+      "type": "string",
+      "enum": ["INR"],
+      "description": "Fixed to INR for this project's scope."
+    },
+    "payment_method": {
+      "type": "string",
+      "enum": ["card", "upi", "netbanking", "wallet"]
+    },
+    "gateway": {
+      "type": "string",
+      "description": "Name of the payment gateway used for this attempt, e.g. 'gateway_a', 'gateway_b'. Keep synthetic/generic names, not real vendor names."
+    },
+    "bank_response_code": {
+      "type": "string",
+      "description": "Raw, noisy response code as if received from the bank/gateway. This is the noisy signal the classifier learns to interpret."
+    },
+    "decline_reason_category": {
+      "type": "string",
+      "enum": [
+        "insufficient_funds",
+        "bank_server_error",
+        "invalid_otp",
+        "risk_block",
+        "network_timeout",
+        "card_expired",
+        "limit_exceeded",
+        "other"
+      ],
+      "description": "The TRUE underlying reason category. In the raw production case this would be inferred; in the synthetic dataset it is generated as ground truth, then partially obscured before being handed to the classifier."
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO-8601 timestamp of the attempt."
+    },
+    "attempt_number": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "1 for the original attempt, incrementing for each retry of the same underlying transaction."
+    },
+    "is_recurring": {
+      "type": "boolean",
+      "description": "True if this attempt is part of a subscription/mandate rather than a one-off checkout."
+    },
+    "previous_attempts": {
+      "type": "array",
+      "description": "History of prior attempts for the same underlying transaction, oldest first. Empty for attempt_number == 1.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "attempt_number": { "type": "integer" },
+          "timestamp": { "type": "string", "format": "date-time" },
+          "decline_reason_category": { "type": "string" },
+          "action_taken": { "type": "string" }
+        },
+        "required": ["attempt_number", "timestamp", "decline_reason_category"]
+      }
+    },
+    "retry_action_taken": {
+      "type": ["string", "null"],
+      "enum": [
+        "same_gateway_retry",
+        "alt_gateway_retry",
+        "alt_payment_method_prompt",
+        "delayed_retry",
+        "no_retry",
+        null
+      ],
+      "description": "The action the policy engine chose for this attempt. Null if not yet evaluated."
+    },
+    "retry_outcome": {
+      "type": ["string", "null"],
+      "enum": ["recovered", "failed", "pending", null],
+      "description": "Outcome of the retry action, once known. Null until resolved."
+    },
+    "time_to_recovery": {
+      "type": ["number", "null"],
+      "description": "Seconds from the original failure to successful recovery. Null if never recovered."
+    }
+  }
+}
