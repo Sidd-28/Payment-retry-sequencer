@@ -1,6 +1,6 @@
 # Payment Retry Sequencer — Phase 4 Backtest Report
 
-Run: 2026-09-05T08:19:45.350241+00:00
+Run: 2026-09-04T11:44:58.262327+00:00
 Input: data/payment_attempts_scored.csv
 Seed: 42
 Transactions: 6,003 (total at-risk amount: ₹10,807,047.00)
