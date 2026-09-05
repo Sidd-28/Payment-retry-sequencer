@@ -137,7 +137,7 @@ def test_adversarial_model_overridden_for_risk_coded_raw_value(tmp_path):
     audit_logger = AuditLogger(str(tmp_path / "audit.jsonl"))
     wrapped = enforce_guardrails(audit_logger)(_adversarial_policy_fn)
 
-    clf = ClassifierOutput("bank_server_error", confidence=0.95, bank_response_code="U40")
+    clf = ClassifierOutput("bank_server_error", confidence=0.95, bank_response_code="U39")
     ctx = _make_ctx()
     decision = wrapped(clf, ctx)
 
